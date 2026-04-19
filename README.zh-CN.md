@@ -1,5 +1,7 @@
 # See It Through
 
+[English](./README.md)
+
 让你的 coding agent 真的把活干完。
 
 这是一套给 Codex 和 Claude Code 用的任务续跑工具。它会把计划写到磁盘上，记录当前做到哪个 checkpoint，并且在 agent 中断以后把任务接起来继续做。

@@ -1,5 +1,7 @@
 # See It Through
 
+[简体中文](./README.zh-CN.md)
+
 Make your coding agent actually finish the job.
 
 See It Through is a task loop for Codex and Claude Code. It writes the plan to disk, keeps track of the current checkpoint, and gives the agent a clean way to resume after a stop, timeout, or context loss.
