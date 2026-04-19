@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "see-it-through": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/src/cli.js",
+        "serve-mcp"
+      ]
+    }
+  }
+}

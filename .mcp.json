@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "see-it-through": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "./src/cli.js",
+        "serve-mcp"
+      ]
+    }
+  }
+}

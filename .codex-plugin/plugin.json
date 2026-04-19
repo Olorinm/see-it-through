@@ -1,0 +1,38 @@
+{
+  "name": "see-it-through",
+  "version": "0.1.0",
+  "description": "Checkpoint-driven durable task loops for Codex and Claude Code.",
+  "author": {
+    "name": "See It Through Contributors"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "agent",
+    "codex",
+    "claude-code",
+    "skills",
+    "checkpoint",
+    "automation"
+  ],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "See It Through",
+    "shortDescription": "Keep long agent tasks alive until every checkpoint is done",
+    "longDescription": "See It Through gives Codex and Claude Code a shared durable-task packet, checkpoint cursor, Codex heartbeat scaffolding, and Claude hook scaffolding so long tasks can keep moving until the plan is actually complete.",
+    "developerName": "See It Through Contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Use autopilot for this task and keep going until every checkpoint is done.",
+      "Plan this carefully, persist the checkpoints, and keep resuming until completion.",
+      "Turn this into a Claude or Codex managed task."
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}
