@@ -1,28 +1,28 @@
 # Claude Code
 
-This repo already includes the files Claude Code needs:
+Install from GitHub:
 
-- `.claude-plugin/plugin.json`
-- `.claude-plugin/marketplace.json`
-- `adapters/claude-code/.mcp.json`
-- `hooks/hooks.json`
+```text
+/plugin marketplace add Olorinm/see-it-through
+/plugin install see-it-through@see-it-through-marketplace
+/reload-plugins
+```
 
-## How to use it
-
-Validate the plugin locally:
+Install from a local checkout:
 
 ```bash
 claude plugin validate .
-```
-
-Add the repo as a marketplace and install the plugin:
-
-```bash
 claude plugin marketplace add .
 claude plugin install see-it-through@see-it-through-marketplace
 ```
 
-If the repo is on GitHub, replace `.` with `owner/repo`.
+Then say:
+
+```text
+Use see-it-through for this task.
+Make a detailed plan first.
+Keep going until every checkpoint is done.
+```
 
 ## Claude autopilot
 

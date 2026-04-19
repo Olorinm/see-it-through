@@ -1,0 +1,20 @@
+{
+  "name": "see-it-through",
+  "interface": {
+    "displayName": "See It Through"
+  },
+  "plugins": [
+    {
+      "name": "see-it-through",
+      "source": {
+        "source": "local",
+        "path": "./plugins/see-it-through"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

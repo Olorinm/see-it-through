@@ -6,6 +6,46 @@
 
 这是一套给 Codex 和 Claude Code 用的任务续跑工具。它会把计划写到磁盘上，记录当前做到哪个 checkpoint，并且在 agent 中断以后把任务接起来继续做。
 
+## 安装
+
+### Codex
+
+先把这个仓库加进 Codex marketplace：
+
+```bash
+codex marketplace add Olorinm/see-it-through
+```
+
+如果你已经把仓库 clone 到本地了，也可以直接加本地路径：
+
+```bash
+codex marketplace add /你的/see-it-through/绝对路径
+```
+
+然后在 Codex 的插件列表里安装 `see-it-through`。
+
+### Claude Code
+
+在 Claude Code 里执行：
+
+```text
+/plugin marketplace add Olorinm/see-it-through
+/plugin install see-it-through@see-it-through-marketplace
+/reload-plugins
+```
+
+如果你是从本地仓库安装，把 `Olorinm/see-it-through` 换成 `.` 就行。
+
+## 第一次怎么用
+
+在 Codex 或 Claude Code 里直接这样说：
+
+```text
+Use see-it-through for this task.
+Make a detailed plan first.
+Keep going until every checkpoint is done.
+```
+
 ## 适合什么任务
 
 - 要跑几轮的重构
@@ -14,36 +54,7 @@
 - 先研究再实现再验证的任务
 - agent 老是做到一半就停的任务
 
-## 快速开始
-
-### Codex
-
-仓库已经带了：
-
-- `.codex-plugin/plugin.json`
-- `.mcp.json`
-- `skills/`
-
-启用 `see-it-through` 或 `codex-autopilot`，然后直接这样说：
-
-```text
-Use autopilot for this task.
-Make a detailed plan first.
-Keep going until every checkpoint is done.
-```
-
-### Claude Code
-
-仓库也带了：
-
-- `.claude-plugin/plugin.json`
-- `.claude-plugin/marketplace.json`
-- `adapters/claude-code/.mcp.json`
-- `hooks/hooks.json`
-
-启用 `see-it-through` 或 `claude-autopilot`，然后也可以这么说。
-
-## 它会保存什么
+## 它会写什么
 
 - `plan.md`，给人看的计划
 - `plan.json`，当前任务状态

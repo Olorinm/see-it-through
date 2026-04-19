@@ -4,7 +4,47 @@
 
 Make your coding agent actually finish the job.
 
-See It Through is a task loop for Codex and Claude Code. It writes the plan to disk, keeps track of the current checkpoint, and gives the agent a clean way to resume after a stop, timeout, or context loss.
+See It Through gives Codex and Claude Code a durable task loop. It writes the plan to disk, tracks the current checkpoint, and makes it easy to resume after a stop, timeout, or context loss.
+
+## Install
+
+### Codex
+
+Add the repo as a marketplace:
+
+```bash
+codex marketplace add Olorinm/see-it-through
+```
+
+If you already cloned it locally:
+
+```bash
+codex marketplace add /absolute/path/to/see-it-through
+```
+
+Then install `see-it-through` from the Codex plugin picker.
+
+### Claude Code
+
+Inside Claude Code:
+
+```text
+/plugin marketplace add Olorinm/see-it-through
+/plugin install see-it-through@see-it-through-marketplace
+/reload-plugins
+```
+
+If you are installing from a local checkout, replace `Olorinm/see-it-through` with `.`.
+
+## First run
+
+In Codex or Claude Code, say:
+
+```text
+Use see-it-through for this task.
+Make a detailed plan first.
+Keep going until every checkpoint is done.
+```
 
 ## When it helps
 
@@ -14,36 +54,7 @@ See It Through is a task loop for Codex and Claude Code. It writes the plan to d
 - research -> implementation -> verification work
 - any task where the agent keeps stopping halfway through
 
-## Quick start
-
-### Codex
-
-This repo includes:
-
-- `.codex-plugin/plugin.json`
-- `.mcp.json`
-- `skills/`
-
-Use `see-it-through` or `codex-autopilot`, then ask for the task in plain language:
-
-```text
-Use autopilot for this task.
-Make a detailed plan first.
-Keep going until every checkpoint is done.
-```
-
-### Claude Code
-
-This repo also includes:
-
-- `.claude-plugin/plugin.json`
-- `.claude-plugin/marketplace.json`
-- `adapters/claude-code/.mcp.json`
-- `hooks/hooks.json`
-
-Use `see-it-through` or `claude-autopilot`, then ask for the task the same way.
-
-## What it saves
+## What it writes
 
 - `plan.md` for a readable plan
 - `plan.json` for the live task state

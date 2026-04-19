@@ -1,0 +1,25 @@
+{
+  "name": "see-it-through",
+  "version": "0.1.0",
+  "description": "Checkpoint-driven durable task loops for Codex and Claude Code.",
+  "type": "module",
+  "bin": {
+    "see-it-through": "./src/cli.js"
+  },
+  "scripts": {
+    "help": "node ./src/cli.js --help",
+    "skills": "node ./src/cli.js skills",
+    "tools": "node ./src/cli.js tools",
+    "mcp": "node ./src/cli.js serve-mcp"
+  },
+  "keywords": [
+    "agent",
+    "codex",
+    "claude-code",
+    "mcp",
+    "skills",
+    "automation",
+    "checkpoint"
+  ],
+  "license": "UNLICENSED"
+}

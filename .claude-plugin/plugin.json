@@ -2,6 +2,8 @@
   "name": "see-it-through",
   "version": "0.1.0",
   "description": "Checkpoint-driven durable task loops for Codex and Claude Code.",
+  "homepage": "https://github.com/Olorinm/see-it-through",
+  "repository": "https://github.com/Olorinm/see-it-through",
   "author": {
     "name": "See It Through Contributors"
   },
