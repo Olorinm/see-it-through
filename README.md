@@ -1,17 +1,55 @@
 # See It Through
 
-Checkpoint-driven durable task loops for Codex and Claude Code.
+Make your coding agent actually finish the job.
 
-This repo exists for one thing: make the agent actually keep going until the task plan is done.
+See It Through is a task loop for Codex and Claude Code. It writes the plan to disk, keeps track of the current checkpoint, and gives the agent a clean way to resume after a stop, timeout, or context loss.
 
-## What it does
+## When it helps
 
-- persists a durable task packet with `plan.json`, `plan.md`, `plan-source.md`, `checkpoints.jsonl`, and `continue-prompt.txt`
-- tracks progress with checkpoint ids, a cursor, and lifecycle states
-- adds Codex-managed task scaffolding for thread heartbeats
-- adds Claude-managed task scaffolding for plugin hooks
-- ships installable skills for Codex and Claude Code
-- exposes the whole thing as an MCP server and CLI
+- refactors that take more than one run
+- migrations
+- bug hunts with a few clear steps
+- research -> implementation -> verification work
+- any task where the agent keeps stopping halfway through
+
+## Quick start
+
+### Codex
+
+This repo includes:
+
+- `.codex-plugin/plugin.json`
+- `.mcp.json`
+- `skills/`
+
+Use `see-it-through` or `codex-autopilot`, then ask for the task in plain language:
+
+```text
+Use autopilot for this task.
+Make a detailed plan first.
+Keep going until every checkpoint is done.
+```
+
+### Claude Code
+
+This repo also includes:
+
+- `.claude-plugin/plugin.json`
+- `.claude-plugin/marketplace.json`
+- `adapters/claude-code/.mcp.json`
+- `hooks/hooks.json`
+
+Use `see-it-through` or `claude-autopilot`, then ask for the task the same way.
+
+## What it saves
+
+- `plan.md` for a readable plan
+- `plan.json` for the live task state
+- `plan-source.md` for the full mirrored plan text
+- `checkpoints.jsonl` for the checkpoint history
+- `continue-prompt.txt` for the next resume prompt
+
+In Codex mode it also writes heartbeat files. In Claude mode it also writes hook context files and a project-level task pointer.
 
 ## Main tools
 
@@ -34,12 +72,6 @@ This repo exists for one thing: make the agent actually keep going until the tas
 - `codex-autopilot`
 - `claude-autopilot`
 
-## Install
-
-```bash
-npm install
-```
-
 ## CLI
 
 ```bash
@@ -50,33 +82,11 @@ node ./src/cli.js start-codex-managed-task --goal "Finish the migration"
 node ./src/cli.js start-claude-managed-task --goal "Finish the migration" --project-dir .
 ```
 
-## Codex
+## How it keeps going
 
-This repo includes:
+- The durable task packet holds the plan and current checkpoint.
+- Codex mode adds heartbeat scaffolding so the same thread can wake up and continue.
+- Claude mode adds hook scaffolding so the run does not stop early while the task is still active.
+- The task state stays explicit: `running`, `blocked`, `paused`, `cancelled`, or `done`.
 
-- `.codex-plugin/plugin.json`
-- `.mcp.json`
-- `skills/`
-
-For Codex autopilot, use `codex-autopilot`. It mirrors a detailed plan into checkpoints, writes heartbeat scaffolding, and keeps the same thread moving until every checkpoint is done.
-
-## Claude Code
-
-This repo also includes:
-
-- `.claude-plugin/plugin.json`
-- `.claude-plugin/marketplace.json`
-- `adapters/claude-code/.mcp.json`
-- `hooks/hooks.json`
-
-For Claude autopilot, use `claude-autopilot`. It writes a managed task packet, keeps a project-level active task pointer, and uses Claude Code hooks to block premature stopping while the task is still running.
-
-## Lifecycle model
-
-Durable tasks use:
-
-- checkpoint ids
-- a single active cursor
-- lifecycle values: `running`, `blocked`, `paused`, `cancelled`, `done`
-
-The point is to know exactly which checkpoint the agent is on, not just vague status text.
+The main thing you get is simple: you can see which checkpoint the agent is on, what is already done, and what it should do next.
