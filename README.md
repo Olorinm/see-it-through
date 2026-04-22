@@ -10,19 +10,41 @@ See It Through gives Codex and Claude Code a durable task loop. It writes the pl
 
 ### Codex
 
-Add the repo as a marketplace:
+This repo already includes the files Codex needs:
+
+- `.agents/plugins/marketplace.json`
+- `.codex-plugin/plugin.json`
+- `.mcp.json`
+- `skills/`
+
+For a local checkout, use the normal Codex plugin flow:
 
 ```bash
-codex marketplace add Olorinm/see-it-through
+npm install
+```
+
+Then:
+
+1. open the repo in Codex so Codex can discover `.agents/plugins/marketplace.json`
+2. if the marketplace does not appear right away, restart Codex
+3. open `/plugins` or the Codex App plugin UI
+4. choose the `See It Through` marketplace and enable the plugin
+
+If you want to register the repo as a local marketplace from the CLI, use Codex's built-in marketplace command:
+
+```bash
+codex plugin marketplace add Olorinm/see-it-through
 ```
 
 If you already cloned it locally:
 
 ```bash
-codex marketplace add /absolute/path/to/see-it-through
+codex plugin marketplace add /absolute/path/to/see-it-through
 ```
 
-Then install `see-it-through` from the Codex plugin picker.
+Then enable `See It Through` from `/plugins` or the Codex App plugin UI.
+
+We intentionally do not ship a custom installer that edits Codex user config or plugin caches directly. The supported path is to use Codex's own local-plugin or marketplace entrypoints.
 
 ### Claude Code
 

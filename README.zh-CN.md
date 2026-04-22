@@ -10,19 +10,41 @@
 
 ### Codex
 
-先把这个仓库加进 Codex marketplace：
+这个仓库已经带上了 Codex 需要的文件：
+
+- `.agents/plugins/marketplace.json`
+- `.codex-plugin/plugin.json`
+- `.mcp.json`
+- `skills/`
+
+如果你是本地 checkout，直接走 Codex 正常的插件入口：
 
 ```bash
-codex marketplace add Olorinm/see-it-through
+npm install
+```
+
+然后：
+
+1. 在 Codex 里打开这个仓库，让 Codex 发现 `.agents/plugins/marketplace.json`
+2. 如果 marketplace 没马上出现，就重启一次 Codex
+3. 打开 `/plugins` 或 Codex App 里的插件界面
+4. 选择 `See It Through` marketplace 并启用插件
+
+如果你想用 Codex 自带的 marketplace 命令手动注册本地源，可以这样：
+
+```bash
+codex plugin marketplace add Olorinm/see-it-through
 ```
 
 如果你已经把仓库 clone 到本地了，也可以直接加本地路径：
 
 ```bash
-codex marketplace add /你的/see-it-through/绝对路径
+codex plugin marketplace add /你的/see-it-through/绝对路径
 ```
 
-然后在 Codex 的插件列表里安装 `see-it-through`。
+然后在 `/plugins` 或 Codex App 的插件界面里启用 `See It Through`。
+
+我们刻意不再提供那种直接改 Codex 用户配置或插件缓存的自定义安装脚本。这里遵循的就是 Codex 自己的本地插件 / marketplace 入口。
 
 ### Claude Code
 
